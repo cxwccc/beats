@@ -257,25 +257,25 @@ no rule matches, the `pipeline` field will be used.
 Example elasticsearch output with `pipelines`:
 
 ["source","yaml"]
-------------------------------------------------------------------------------
-filebeat.prospectors:
-- paths: ["/var/log/app/normal/*.log"]
-  fields:
-    type: "normal"
-- paths: ["/var/log/app/critical/*.log"]
-  fields:
-    type: "critical"
-
-output.elasticsearch:
-  hosts: ["http://localhost:9200"]
-  index: "filebeat-%{[beat.version]}-%{+yyyy.MM.dd}"
-  pipelines:
-    - pipeline: critical_pipeline
-      when.equals:
-        fields.type: "critical"
-    - pipeline: normal_pipeline
-      when.equals:
-        fields.type: "normal"
+#------------------------------------------------------------------------------
+#filebeat.prospectors:
+#- paths: ["/var/log/app/normal/*.log"]
+#  fields:
+#    type: "normal"
+#- paths: ["/var/log/app/critical/*.log"]
+#  fields:
+#    type: "critical"
+#
+#output.elasticsearch:
+#  hosts: ["http://localhost:9200"]
+#  index: "filebeat-%{[beat.version]}-%{+yyyy.MM.dd}"
+#  pipelines:
+#    - pipeline: critical_pipeline
+#      when.equals:
+#        fields.type: "critical"
+#    - pipeline: normal_pipeline
+#      when.equals:
+#        fields.type: "normal"
 ------------------------------------------------------------------------------
 endif::[]
 
